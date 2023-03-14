@@ -28,4 +28,31 @@ public class HashTable {
             }
         }
     }
+
+    private int hash(String key){// private : hash method is only going to be used by other methods in the hash table class
+        int hash = 0;
+        char[] keyChars = key.toCharArray();
+        for(int i = 0; i < keyChars.length; i++){
+            int asciiValue = keyChars[i];
+            hash = (hash + asciiValue * 23) % dataMap.length;
+        }
+        return hash;
+    }
+
+    public void set(String key, int value){
+        int index = hash(key);
+        Node newNode = new Node(key, value);
+        if (dataMap[index] == null){
+            dataMap[index] = newNode;
+        }
+        else{
+            Node temp = dataMap[index];// 인덱스의 첫노드
+            while(temp.next != null){
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+
 }
