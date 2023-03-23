@@ -65,5 +65,23 @@ public class BinarySearchTree {
         return false;
     }
 
+    //Recursive BST
+    private boolean rContains(Node currentNode, int value){
+        if(currentNode == null) return false;
+
+        if(currentNode.value == value) return true;
+
+        if(value < currentNode.value){
+            return rContains(currentNode.left, value);
+        }
+        else{
+            return rContains(currentNode.right, value);
+        }
+    }
+
+    public boolean rContains(int value){
+        return rContains(root, value);
+    }
+
 
 }
